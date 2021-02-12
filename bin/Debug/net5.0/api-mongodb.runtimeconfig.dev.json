@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/dyganar/.dotnet/store/|arch|/|tfm|",
+      "/home/dyganar/.nuget/packages"
+    ]
+  }
+}
