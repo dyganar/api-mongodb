@@ -21,11 +21,22 @@ namespace api_mongodb
         {
 
             services.AddControllers();
+    
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api_mongodb", Version = "v1" });
             });
             services.AddSingleton<Data.MongoDB>();
+            services.AddCors(options => {
+                options.AddPolicy(
+                    "AllowAll",
+                    builder => builder.AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    
+                );
+            });
+   
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +52,10 @@ namespace api_mongodb
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseCors("AllowAll");
         
             app.UseEndpoints(endpoints =>
             {
